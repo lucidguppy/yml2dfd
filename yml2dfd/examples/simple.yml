@@ -1,0 +1,42 @@
+title: Process Invoice
+originators:
+  customer:
+    outputs:
+      request 1:
+        to: process A
+receivers:
+  - some guy
+data_flows:
+  - request 1
+  - intermediate request
+  - output 1
+  - output 2
+  - store X
+  - store Y
+  - store Z
+  - store W
+  - output 2
+process_names:
+  - process A
+  - process B
+  - process C
+processes:
+  process A:
+    sources:
+      - store Z
+    outputs:
+      intermediate request:
+        to: process B
+      output 1:
+        to: process C
+  process B:
+    sources:
+      - store W
+    sinks:
+      - store X
+      - store Y
+  process C:
+    outputs:
+      output 2:
+        to: some guy
+
